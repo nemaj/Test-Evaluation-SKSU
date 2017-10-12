@@ -1,9 +1,14 @@
+
+
+<?php include'php_con/db_connect.php' ?>
+
+
 <!DOCTYPE html>
 <!-- Template Name: Packet - Responsive Admin Template build with Twitter Bootstrap 3.x | Author: ClipTheme -->
 <!--[if IE 8]><html class="ie8" lang="en"><![endif]-->
 <!--[if IE 9]><html class="ie9" lang="en"><![endif]-->
 <!--[if !IE]><!-->
-<html lang="en">
+<html lang="en" ng-app>
 	<!--<![endif]-->
 	<!-- start: HEAD -->
 	<head>
@@ -23,7 +28,10 @@
 
 	</head>
 	<!-- end: HEAD -->
-	<body>
+	<body ng-cloak>
+
+		<?php include'php_assets/angular.php' ?>
+
 		<div id="app" class="lyt-4">
 			<!-- sidebar -->
 			<div class="sidebar app-aside" id="sidebar">
