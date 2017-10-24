@@ -261,7 +261,7 @@ body {
   color: #2C2F3B !important;
 }
 .horizontal-menu .navbar-nav > li.active > a {
-  color: #ffffff !important;
+  color: #ffffff;
   background: #bcc7e6 !important;
 }
 .horizontal-menu .navbar-nav > li.active > a:hover {

@@ -1,4 +1,4 @@
-/* ---------------------------------------------------------------------- 
+/* ----------------------------------------------------------------------
 >>> TABLE OF CONTENT
 -------------------------------------------------------------------------
 1 - Basic Elements & Classes
@@ -344,7 +344,7 @@ h5.over-title {
   position: relative;
 }
 .container-fullw:before {
-  content: " ";
+  /*content: " ";
   position: absolute;
   height: 1px;
   bottom: 0;
@@ -356,7 +356,7 @@ h5.over-title {
   background-image: -ms-linear-gradient(left center, transparent, rgba(0, 0, 0, 0.1), transparent);
   background-image: -moz-linear-gradient(left center, transparent, rgba(0, 0, 0, 0.1), transparent);
   background-image: -webkit-linear-gradient(left center, transparent, rgba(0, 0, 0, 0.1), transparent);
-  background-image: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
+  background-image: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));*/
 }
 @media (max-width: 768px) {
   .container-fullw {
@@ -912,7 +912,8 @@ span[role="slider"] {
 @media (min-width: 992px) {
   .navbar .navbar-right {
     position: relative;
-    margin: 0 15px 0 0;
+    /* margin: 0 15px 0 0; */
+    margin: 0;
   }
 }
 @media (max-width: 991px) and (min-width: 767px) {
@@ -2534,6 +2535,9 @@ ul.sub-menu li ul.sub-menu li ul.sub-menu li a {
   }
 }
 @media (min-width: 992px) {
+  .lyt-4.app-navbar-fixed .main-content.index{
+    margin-top: 0;
+  }
   .lyt-4.app-navbar-fixed .main-content {
     margin-top: 50px;
   }
@@ -3773,6 +3777,12 @@ ul.sub-menu li ul.sub-menu li ul.sub-menu li a {
   padding-bottom: 10px;
   color: #777 !important;
   line-height: normal;
+  line-height: 30px;
+}
+.horizontal-menu .navbar-nav > li > a > span.fa {
+  font-size: 20px;
+  position: relative;
+  top: -1px;
 }
 .horizontal-menu .navbar-nav > li > a > * {
   vertical-align: middle;
@@ -15894,4 +15904,15 @@ figure.effect-goliath:hover p {
   background-position: 50% 50%;
   background-repeat: no-repeat;
   margin-top: 60px;
+}
+
+
+
+/*Added Custome Style*/
+
+.index .panel-white{
+  border-color: transparent;
+}
+.index .main-description{
+  line-height: 200%;
 }

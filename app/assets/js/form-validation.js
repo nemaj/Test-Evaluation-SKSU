@@ -4,7 +4,7 @@ var FormValidator = function () {
         $("input[type='radio'], input[type='checkbox']").on('ifChecked', function(event) {
 			$(this).parent().closest(".has-error").removeClass("has-error").addClass("has-success").find(".help-block").hide().end().find('.symbol').addClass('ok');
 		});
-    }; 
+    };
     // function to initiate Validation Sample 1
     var runValidator1 = function () {
         var form1 = $('#form');
@@ -34,6 +34,10 @@ var FormValidator = function () {
             ignore: "",
             rules: {
                 firstname: {
+                    minlength: 2,
+                    required: true
+                },
+                middlename: {
                     minlength: 2,
                     required: true
                 },
@@ -71,14 +75,15 @@ var FormValidator = function () {
                 }
             },
             messages: {
-                firstname: "Please specify your first name",
+								firstname: "Please specify your first name",
+                middlename: "Please specify your middle name",
                 lastname: "Please specify your last name",
                 email: {
                     required: "We need your email address to contact you",
                     email: "Your email address must be in the format of name@domain.com"
                 },
                 gender: "Please check a gender!"
-            },           
+            },
             invalidHandler: function (event, validator) { //display error alert on form submit
                 successHandler1.hide();
                 errorHandler1.show();
@@ -97,13 +102,15 @@ var FormValidator = function () {
                 label.addClass('help-block valid');
                 // mark the current input as valid and display OK icon
                 $(element).closest('.form-group').removeClass('has-error').addClass('has-success').find('.symbol').removeClass('required').addClass('ok');
-            },
-            submitHandler: function (form) {
-                successHandler1.show();
-                errorHandler1.hide();
-                // submit form
-                //$('#form').submit();
-            }
+						}
+						// },
+            // submitHandler: function (form) {
+            //     successHandler1.show();
+            //     errorHandler1.hide();
+            //     // submit form
+						// 		alert('submit');
+            //     $('#form').submit();
+            // }
         });
     };
     // function to initiate Validation Sample 2
@@ -215,8 +222,8 @@ var FormValidator = function () {
                 //$('#form2').submit();
             }
         });
-        CKEDITOR.disableAutoInline = true;
-        $('textarea.ckeditor').ckeditor();
+        // CKEDITOR.disableAutoInline = true;
+        // $('textarea.ckeditor').ckeditor();
     };
     return {
         //main function to initiate template pages

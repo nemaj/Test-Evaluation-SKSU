@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 	echo '
 
@@ -19,6 +19,9 @@
 		<link rel="stylesheet" href="../bower_components/slick.js/slick/slick-theme.css">
 		<!-- end: MAIN CSS -->
 		<!-- start: CSS REQUIRED FOR THIS PAGE ONLY -->
+		<link href="../bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" media="screen">
+		<link href="../bower_components/select2/dist/css/select2.min.css" rel="stylesheet" media="screen">
+		<link href="../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.standalone.min.css" rel="stylesheet" media="screen">
 		<!-- end: CSS REQUIRED FOR THIS PAGE ONLY -->
 		<!-- start: Packet CSS -->
 		<link rel="stylesheet" href="assets/css/styles.css">
@@ -29,4 +32,3 @@
 		<link rel="shortcut icon" href="favicon.ico" />
 
 		';
-
