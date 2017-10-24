@@ -1,8 +1,11 @@
 <?php
 
+$_courseID = '';
 if(empty($_GET['id'])){
+	$_courseID = $subject_data['course_id'];
 	$sql = "SELECT * FROM tbl_course WHERE course_id='".$subject_data['course_id']."'";
 }else{
+	$_courseID = $_GET['id'];
 	$sql = "SELECT * FROM tbl_course WHERE course_id='".$_GET['id']."'";
 }
 

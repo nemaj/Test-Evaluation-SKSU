@@ -1,6 +1,6 @@
 <?php 
 
-$sql = "SELECT * FROM tbl_subject WHERE subject_id='".$_GET['id']."'";
+$sql = "SELECT * FROM tbl_subject WHERE subject_id='".$_GET['Sid']."'";
 
 $subject_each = mysqli_query($conn, $sql);
 

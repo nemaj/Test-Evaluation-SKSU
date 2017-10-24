@@ -15916,3 +15916,7 @@ figure.effect-goliath:hover p {
 .index .main-description{
   line-height: 200%;
 }
+
+li.li-bold{
+  font-weight: bold;
+}

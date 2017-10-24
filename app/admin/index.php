@@ -3,6 +3,7 @@
 <?php
     include'php_assets/admin_header.php';
     include'php_function/get_course.php';
+    include'php_function/get_student.php';
     $active_dashboard = 'active';
     $active_teacher = '';
     $active_course = '';
@@ -43,12 +44,12 @@
 										  <div class="panel-body">
                       <div class="row">
                         <div class="col-lg-4 col-xs-5">
-                          <h5 class="over-title margin-bottom-15"><span class="text-bold">Course</span> List</h5>
+                          <h5 class="over-title margin-bottom-15"><span class="text-bold">Student</span> List</h5>
                         </div>
                         <div class="col-lg-8 col-xs-7 text-right">
                         <div class="btn-group">
 													<button type="button" class="btn btn-azure btn-sm" data-toggle="modal" data-target=".bs-example-modal-sm">
-														Add <span class="text-bold">Course</span>
+														Add <span class="text-bold">Student</span>
 													</button>
                         </div>
                             </div>
@@ -57,17 +58,21 @@
                             <thead>
                                 <tr>
                                     <th width="100" class="center">#</th>
-                                    <th width="500">Course</th>
-                                    <th width="500" class="hidden-xs">Description</th>
+                                    <th width="400">Name</th>
+                                    <th width="250" class="hidden-xs">Email</th>
+                                    <th width="250" class="hidden-xs">Course/Yr/Section</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $row_c = 1; while($row = mysqli_fetch_assoc($course)){ ?>
+                                <?php $row_c = 1; while($row = mysqli_fetch_assoc($student)){ 
+                                    include'php_function/get_student_course.php';
+                                ?>
                                 <tr>
                                     <td class="center"><? echo $row_c ?></td>
-                                    <td><? echo $row['course'] ?></td>
-                                    <td class="hidden-xs"><? echo !$row['description'] ? '-' : $row['description'] ?></td>
+                                    <td><? echo $row['lastname'].', '.$row['firstname'].' '.$row['middlename'] ?></td>
+                                    <td class="hidden-xs"><? echo $row['email'] ?></td>
+                                    <td class="hidden-xs"><? echo $std_course['course'].'-'.$row['year'].$row['section'] ?></td>
                                     <td class="center">
                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
                                         <a href="#" class="btn btn-transparent btn-xs"  data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil"></i></a>

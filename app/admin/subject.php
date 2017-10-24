@@ -6,7 +6,6 @@
     include'php_function/get_each_subject.php';
     include'php_function/get_each_course.php';
     include'php_function/get_course.php';
-    include'php_function/get_subject.php';
     include'php_function/get_question.php';
     $active_dashboard = '';
     $active_teacher = '';
@@ -27,7 +26,7 @@
                 <?php include'php_assets/admin_navbar.php'; ?>
 				<!-- end: TOP NAVBAR -->
 
-				<div class="main-content" ng-controller="CourseCtrl">
+				<div class="main-content" ng-controller="QuestionCtrl">
 					<div class="wrap-content container" id="container">
 						<!-- start: BREADCRUMB -->
 						<div class="breadcrumb-wrapper">
@@ -38,10 +37,14 @@
 									<a href="index.php"><i class="fa fa-home margin-right-5 text-large text-dark"></i>Admin</a>
 								</li>
 								<li>
+                                    <a href="course_mg.php">
 									Course
+                                    </a>
 								</li>
                                 <li>
+                                    <a href="course.php?id=<? echo $_courseID ?>">
                                     <? echo $course_data['course'] ?>
+                                    </a>
                                 </li>
                                 <li>
                                     <? echo $subject_data['subject_code'] ?>
@@ -62,7 +65,7 @@
                                       </div>
                                       <div class="col-lg-8 col-xs-7 text-right">
                                           <div class="btn-group">
-            								<button type="button" ng-click="clearCourse()" class="btn btn-azure btn-sm" data-toggle="modal" data-target=".bs-example-modal-sm">
+            								<button type="button" ng-click="clearQuestion()" class="btn btn-azure btn-sm" data-toggle="modal" data-target=".bs-example-modal-sm">
             									Add <span class="text-bold">Question</span>
             								</button>
                                           </div>
@@ -73,21 +76,23 @@
                                             <tr>
                                                 <th width="100" class="center">#</th>
                                                 <th width="500">Question</th>
-                                                <th width="500" class="hidden-xs">Answer</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                          <?php $row_c=1; while($row = mysqli_fetch_assoc($question)){ ?>
+                                          <?php 
+                                            $row_c=1; 
+                                            while($row = mysqli_fetch_assoc($question)){
+                                                include'php_function/get_answer_each_question.php';
+                                          ?>
                                             <tr>
                                                 <td class="center"><? echo $row_c ?></td>
                                                 <td><? echo $row['question'] ?></td>
-                                                <td class="hidden-xs"><? echo $row['answer'] ?></td>
                                                 <td class="center">
                                                 <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                                    <a class="btn btn-transparent btn-xs tooltips"><i class="fa fa-info-circle" ng-click="viewCourse()"></i></a>
-                                                    <a type="button" class="btn btn-transparent btn-xs" ng-click="getCourse(<? echo htmlspecialchars(json_encode($row)) ?>)" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-pencil"></i></a>
-                                                    <a href="" class="btn btn-transparent btn-xs tooltips" ng-click="getCourse(<? echo htmlspecialchars(json_encode($row)) ?>)" data-toggle="modal" data-target=".bs-example-modal-sm-delete"><i class="fa fa-times fa fa-white"></i></a>
+                                                    <a class="btn btn-transparent btn-xs tooltips" data-toggle="modal" data-target=".bs-example-modal-sm-info"  ng-click="getQuestionAns(<? echo htmlspecialchars(json_encode($row)) ?>, <? echo htmlspecialchars(json_encode($question_ans)) ?>)"><i class="fa fa-info-circle"></i></a>
+                                                    <a type="button" class="btn btn-transparent btn-xs" ng-click="getQuestion(<? echo htmlspecialchars(json_encode($row)) ?>)" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-pencil"></i></a>
+                                                    <a href="" class="btn btn-transparent btn-xs tooltips" ng-click="getQuestion(<? echo htmlspecialchars(json_encode($row)) ?>)" data-toggle="modal" data-target=".bs-example-modal-sm-delete"><i class="fa fa-times fa fa-white"></i></a>
                                                 </div>
                                                 <div class="visible-xs visible-sm hidden-md hidden-lg">
                                                     <div class="btn-group dropdown ">
@@ -126,18 +131,14 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel">{{button}} Subject</h4>
+                            <h4 class="modal-title" id="myModalLabel">{{button}} Question</h4>
                         </div>
-                        <form role="form" action="php_function/add_subject.php?id=<? echo $_GET['id'] ?>" method="post">
-                            <input type="hidden" name="courseID" value="{{ courseData.subject_id ? courseData.subject_id : '' }}">
+                        <form role="form" action="php_function/add_question.php?id=<? echo $_GET['Sid'] ?>" method="post">
+                            <input type="hidden" name="quesID" value="{{ questionData.q_id ? questionData.q_id : '' }}">
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label for="code"> Subject Code <span class="symbol required"></span> </label>
-                                    <input type="text" class="form-control" id="code" name="code" placeholder="Subject Code" value="{{ courseData.subject_code ? courseData.subject_code : '' }}" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="description"> Description </label>
-                                    <textarea placeholder="Subject Description" id="description" name="description" class="form-control" rows="4">{{ courseData.description ? courseData.description : '' }}</textarea>
+                                    <label for="question"> Question </label>
+                                    <textarea placeholder="Subject Question" id="question" name="question" class="form-control" rows="4">{{ questionData.question ? questionData.question : '' }}</textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -162,14 +163,41 @@
                             <h4 class="modal-title" id="myModalLabel">Delete Warning</h4>
                         </div>
                         <div class="modal-body">
-                            Do you want to delete <strong>{{courseData.subject_code}}</strong> ?
+                            Do you want to delete <strong>{{questionData.question}}</strong> ?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary btn-o" data-dismiss="modal">
                                 Close
                             </button>
-                            <a type="submit" href="php_function/del_subject.php?id={{courseData.subject_id}}&course={{courseData.course_id}}" class="btn btn-primary">
+                            <a type="submit" href="php_function/del_question.php?id={{questionData.q_id}}&subject={{questionData.subject_id}}" class="btn btn-primary">
                                 Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade bs-example-modal-sm-info"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Question Info</h4>
+                        </div>
+                        <div class="modal-body">
+                            <strong>Question: </strong>{{questionData.question}}
+                            <ul>
+                                <li ng-if="anEmpty">No Answer Found.</li>
+                                <li ng-repeat="ans in questionAnsData" ng-class="{ 'li-bold': ans.is_answer==1 }">{{ ans.value }}</li>
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary btn-o" data-dismiss="modal">
+                                Close
+                            </button>
+                            <a type="button" href="question_ans.php?Qid={{questionData.q_id}}" class="btn btn-primary">
+                                Manage
                             </a>
                         </div>
                     </div>
