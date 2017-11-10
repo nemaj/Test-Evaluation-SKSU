@@ -2,6 +2,7 @@
 <!-- start: PHP Initialiaze -->
 <?php
     include'php_assets/admin_header.php';
+    // include'php_function/check_account.php';
     include'php_function/get_course.php';
     include'php_function/get_student.php';
     $active_dashboard = 'active';
@@ -10,7 +11,19 @@
 ?>
 <!-- end: PHP Initialiaze -->
 
-    <body>
+    <body ng-app="EvaluationApp">
+
+
+        <script src="../../node_modules/angular/angular.js"></script>
+        <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../../bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
+        <script src="../../bower_components/jquery-throttle-debounce/jquery.ba-throttle-debounce.js"></script>
+        <script src="../../bower_components/moment/min/moment-with-locales.min.js"></script>
+        <link rel="stylesheet" href="../../bower_components/angular-circle-countdown/dist/angular_circle_countdown.css">
+        <script src="../../bower_components/angular-circle-countdown/dist/angular_circle_countdown.js"></script>
+        <script src="../php_assets/angular_app.js"></script>
+
+
 		<div id="app" class="lyt-4">
 			<div class="app-content">
 
@@ -35,6 +48,10 @@
 						</div>
 						<!-- end: BREADCRUMB -->
 						<!-- start: FIRST SECTION -->
+            
+            <div ng-controller="IndexCtrl">
+                 <countdown autostart="true" time="120" colors="flat-colors" callback="finished()">
+            </div>
 
             <div class="container-fluid container-fullw">
 							<div class="row no-margin">

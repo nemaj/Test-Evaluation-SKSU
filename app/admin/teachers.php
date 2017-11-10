@@ -143,7 +143,10 @@
                                         </thead>
                                         <tbody>
                                             <?php 
-                                                $row_c = 1; while($row = mysqli_fetch_assoc($teacher)){ 
+                                                $row_c = 1; 
+                                                while($row = mysqli_fetch_assoc($teacher)){ 
+                                                    $_GET['Tid'] = $row['teach_id'];
+                                                    include'php_function/get_teacher_subj.php';
                                                 //$tData = json_encode($teachList);
                                             ?>
                                             <tr>
@@ -152,6 +155,7 @@
                                                 <td class="hidden-xs"><? echo $row['email'] ?></td>
                                                 <td class="center">
                                                 <div class="visible-md visible-lg hidden-sm hidden-xs">
+                                                    <a class="btn btn-transparent btn-xs tooltips"  data-toggle="modal" data-target=".bs-example-modal-sm-details" ng-click="viewTeacher(<? echo htmlspecialchars(json_encode($row)) ?>,<? echo htmlspecialchars(json_encode($teachSubj_data)) ?>)"><i class="fa fa-info-circle"></i></a>
                                                     <a href="" data-toggle="collapse" data-target="#demo" ng-click="getTeacher(<? echo htmlspecialchars(json_encode($row)) ?>)" class="btn btn-transparent btn-xs"  data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil"></i></a>
                                                     <a href="" class="btn btn-transparent btn-xs tooltips" ng-click="delTeacher(<? echo htmlspecialchars(json_encode($row)) ?>)" data-toggle="modal" data-target=".bs-example-modal-sm" data-toggle="tooltip" data-placement="top" title="Remove"><i class="fa fa-times fa fa-white"></i></a>
                                                 </div>
@@ -161,6 +165,9 @@
                                                             <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
                                                         </button>
                                                         <ul class="dropdown-menu pull-right dropdown-light" role="menu">
+                                                            <li>
+                                                                <a href="#"> View </a>
+                                                            </li>
                                                             <li>
                                                                 <a href="#"> Edit </a>
                                                             </li>
@@ -202,6 +209,32 @@
                                         </button>
                                         <a type="button" href="php_function/del_teacher.php?id={{teacherData.teach_id}}" class="btn btn-primary">
                                             Delete
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade bs-example-modal-sm-details"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel"><strong>{{teacherData.lastname}}</strong> Subject's</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul>
+                                            <li ng-repeat="subj in teacherSubjData">{{subj.subject_code}}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary btn-o" data-dismiss="modal">
+                                            Cancel
+                                        </button>
+                                        <a type="button" href="assign_subj.php?Tid={{teacherData.teach_id}}" class="btn btn-primary">
+                                            Manage
                                         </a>
                                     </div>
                                 </div>

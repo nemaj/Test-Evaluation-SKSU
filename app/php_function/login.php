@@ -47,6 +47,27 @@ if(mysqli_num_rows($sql_result)>0){
     die();
 
   }else{
-    echo "No User Found";
+    $sql = "SELECT * FROM tbl_teacher WHERE username='$user' AND password='$pass' OR email='$user' AND password='$pass'";
+
+    $sql_result = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($sql_result)>0){
+
+      if(isset($_POST['rememberMe'])){
+        setcookie("user_role", 'Teacher', time()+36000, "/","", 0);
+        setcookie("user_account", $user, time()+36000, "/","", 0);
+      }else{
+        $_SESSION['user_role'] = 'Teacher';
+        $_SESSION['user_account'] = $user;
+      }
+
+      header('location: ../admin');
+      die();
+
+    }else{
+      echo "No User Found";
+    }
+
+    // echo "No User Found";
   }
 }
