@@ -41,7 +41,7 @@
                                     </a>
 								</li>
 								<li>
-                                    <? echo $course_data['course'] ?>
+                                    <?php echo $course_data['course'] ?>
 								</li>
 							</ul>
 						</div>
@@ -77,14 +77,14 @@
                                         <tbody>
                                           <?php $row_c=1; while($row = mysqli_fetch_assoc($subject)){ ?>
                                             <tr>
-                                                <td class="center"><? echo $row_c ?></td>
-                                                <td><? echo $row['subject_code'] ?></td>
-                                                <td class="hidden-xs"><? echo $row['description'] ?></td>
+                                                <td class="center"><?php echo $row_c ?></td>
+                                                <td><?php echo $row['subject_code'] ?></td>
+                                                <td class="hidden-xs"><?php echo $row['description'] ?></td>
                                                 <td class="center">
                                                 <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                                    <a class="btn btn-transparent btn-xs tooltips"><i class="fa fa-info-circle" ng-click="viewCourse(<? echo htmlspecialchars(json_encode($row)) ?>)"></i></a>
-                                                    <a type="button" class="btn btn-transparent btn-xs" ng-click="getCourse(<? echo htmlspecialchars(json_encode($row)) ?>)" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-pencil"></i></a>
-                                                    <a href="" class="btn btn-transparent btn-xs tooltips" ng-click="getCourse(<? echo htmlspecialchars(json_encode($row)) ?>)" data-toggle="modal" data-target=".bs-example-modal-sm-delete"><i class="fa fa-times fa fa-white"></i></a>
+                                                    <a class="btn btn-transparent btn-xs tooltips"><i class="fa fa-info-circle" ng-click="viewCourse(<?php echo htmlspecialchars(json_encode($row)) ?>)"></i></a>
+                                                    <a type="button" class="btn btn-transparent btn-xs" ng-click="getCourse(<?php echo htmlspecialchars(json_encode($row)) ?>)" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-pencil"></i></a>
+                                                    <a href="" class="btn btn-transparent btn-xs tooltips" ng-click="getCourse(<?php echo htmlspecialchars(json_encode($row)) ?>)" data-toggle="modal" data-target=".bs-example-modal-sm-delete"><i class="fa fa-times fa fa-white"></i></a>
                                                 </div>
                                                 <div class="visible-xs visible-sm hidden-md hidden-lg">
                                                     <div class="btn-group dropdown ">
@@ -125,7 +125,7 @@
                             </button>
                             <h4 class="modal-title" id="myModalLabel">{{button}} Subject</h4>
                         </div>
-                        <form role="form" action="php_function/add_subject.php?id=<? echo $_GET['id'] ?>" method="post">
+                        <form role="form" action="php_function/add_subject.php?id=<?php echo $_GET['id'] ?>" method="post">
                             <input type="hidden" name="courseID" value="{{ courseData.subject_id ? courseData.subject_id : '' }}">
                             <div class="modal-body">
                                 <div class="form-group">
@@ -179,16 +179,7 @@
 				</div>
 			</div>
 			<!-- start: FOOTER -->
-			<footer>
-				<div class="footer-inner">
-					<div class="pull-left">
-						&copy; <span class="current-year"></span><span class="text-bold text-uppercase"> ClipTheme</span>. <span>All rights reserved</span>
-					</div>
-					<div class="pull-right">
-						<span class="go-top"><i class="ti-angle-up"></i></span>
-					</div>
-				</div>
-			</footer>
+            <?php include'php_assets/admin_footer.php'; ?>
 			<!-- end: FOOTER -->
 		</div>
 		<!-- start: MAIN JAVASCRIPTS -->

@@ -52,7 +52,7 @@
                                                     <div class="row">
                                                         <input type="hidden" name="teachID" value="{{teacherData.teach_id ? teacherData.teach_id : ''}}">
                                                         <div class="col-md-12">
-                                                            <div class="errorHandler alert alert-danger no-display" style="display: <? echo $_GET['error'] ? 'block !important' : 'none !important' ?>">
+                                                            <div class="errorHandler alert alert-danger no-display" style="display: <?php echo $_GET['error'] ? 'block !important' : 'none !important' ?>">
                                                                 <i class="fa fa-times-sign"></i> You Username is already used.
                                                             </div>
                                                             <div class="successHandler alert alert-success no-display">
@@ -106,88 +106,87 @@
                         </div>
 
                         <div class="container-fluid container-fullw">
-            			  <div class="row no-margin">
-            				<div class="col-xs-12 no-padding partition-azure no-border">
-                              <div class="row no-margin">
-                                <div class="panel panel-white no-radius no-margin">
-            					  <div class="panel-body" ng-init="teacherShow = <? echo $teacher_count ?>">
-                                    <?
-                                        if(isset($_SESSION['teacher_error'])){
-                                            echo '<h5 class="over-title margin-bottom-15" style="text-align: center; color: red;"><span class="text-bold">'.$_SESSION['teacher_error'].'</span></h5>';
-                                            $_SESSION['teacher_error']='';
-                                        }
-                                    ?>
-                                    <div class="row">
-                                        <div class="col-lg-4 col-xs-5">
-                                            <h5 class="over-title margin-bottom-15"><span class="text-bold">Teacher's</span> List</h5>
-                                        </div>
-                                        <div class="col-lg-8 col-xs-7 text-right">
-                                            <div class="btn-group">
-                        						<button type="button" ng-click="clearTeacher()" class="btn btn-azure btn-sm" data-toggle="collapse" data-target="#demo">
-                        							Add <span class="text-bold">Teacher</span>
-                        						</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div style="text-align: center;" ng-if="teacherShow == 0">
-                                        <h5 class="over-title margin-bottom-15">No Teacher Found</h5>
-                                    </div>
-                                    <table class="table table-hover" id="sample-table-1" ng-if="teacherShow > 0">
-                                        <thead>
-                                            <tr>
-                                                <th width="100" class="center">#</th>
-                                                <th width="500">Name</th>
-                                                <th width="500" class="hidden-xs">Email</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php 
-                                                $row_c = 1; 
-                                                while($row = mysqli_fetch_assoc($teacher)){ 
-                                                    $_GET['Tid'] = $row['teach_id'];
-                                                    include'php_function/get_teacher_subj.php';
-                                                //$tData = json_encode($teachList);
-                                            ?>
-                                            <tr>
-                                                <td class="center"><? echo $row_c ?></td>
-                                                <td><? echo $row['lastname'].', '.$row['firstname'].' '.$row['middlename'] ?></td>
-                                                <td class="hidden-xs"><? echo $row['email'] ?></td>
-                                                <td class="center">
-                                                <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                                    <a class="btn btn-transparent btn-xs tooltips"  data-toggle="modal" data-target=".bs-example-modal-sm-details" ng-click="viewTeacher(<? echo htmlspecialchars(json_encode($row)) ?>,<? echo htmlspecialchars(json_encode($teachSubj_data)) ?>)"><i class="fa fa-info-circle"></i></a>
-                                                    <a href="" data-toggle="collapse" data-target="#demo" ng-click="getTeacher(<? echo htmlspecialchars(json_encode($row)) ?>)" class="btn btn-transparent btn-xs"  data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil"></i></a>
-                                                    <a href="" class="btn btn-transparent btn-xs tooltips" ng-click="delTeacher(<? echo htmlspecialchars(json_encode($row)) ?>)" data-toggle="modal" data-target=".bs-example-modal-sm" data-toggle="tooltip" data-placement="top" title="Remove"><i class="fa fa-times fa fa-white"></i></a>
-                                                </div>
-                                                <div class="visible-xs visible-sm hidden-md hidden-lg">
-                                                    <div class="btn-group dropdown ">
-                                                        <button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" data-toggle="dropdown">
-                                                            <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu pull-right dropdown-light" role="menu">
-                                                            <li>
-                                                                <a href="#"> View </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#"> Edit </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#"> Remove </a>
-                                                            </li>
-                                                        </ul>
+                			<div class="row no-margin">
+                				<div class="col-xs-12 no-padding partition-azure no-border">
+                                    <div class="row no-margin">
+                                        <div class="panel panel-white no-radius no-margin">
+                    					    <div class="panel-body" ng-init="teacherShow = <?php echo $teacher_count ?>">
+                                                <?php
+                                                    if(isset($_SESSION['teacher_error'])){
+                                                        echo '<h5 class="over-title margin-bottom-15" style="text-align: center; color: red;"><span class="text-bold">'.$_SESSION['teacher_error'].'</span></h5>';
+                                                        $_SESSION['teacher_error']='';
+                                                    }
+                                                ?>
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-xs-5">
+                                                        <h5 class="over-title margin-bottom-15"><span class="text-bold">Teacher's</span> List</h5>
                                                     </div>
-                                                </div></td>
-                                            </tr>
-                                            <?php $row_c++; } ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-            				   </div>
-                              </div>
-            				</div>
-            			  </div>
+                                                    <div class="col-lg-8 col-xs-7 text-right">
+                                                        <div class="btn-group">
+                                    						<button type="button" ng-click="clearTeacher()" class="btn btn-azure btn-sm" data-toggle="collapse" data-target="#demo">
+                                    							Add <span class="text-bold">Teacher</span>
+                                    						</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div style="text-align: center;" ng-if="teacherShow == 0">
+                                                    <h5 class="over-title margin-bottom-15">No Teacher Found</h5>
+                                                </div>
+                                                <table class="table table-hover" id="sample-table-1" ng-if="teacherShow > 0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th width="100" class="center">#</th>
+                                                            <th width="500">Name</th>
+                                                            <th width="500" class="hidden-xs">Email</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php 
+                                                            $row_c = 1; 
+                                                            while($row = mysqli_fetch_assoc($teacher)){ 
+                                                                $_GET['Tid'] = $row['teach_id'];
+                                                                include'php_function/get_teacher_subj.php';
+                                                            //$tData = json_encode($teachList);
+                                                        ?>
+                                                        <tr>
+                                                            <td class="center"><?php echo $row_c ?></td>
+                                                            <td><?php echo $row['lastname'].', '.$row['firstname'].' '.$row['middlename'] ?></td>
+                                                            <td class="hidden-xs"><?php echo $row['email'] ?></td>
+                                                            <td class="center">
+                                                            <div class="visible-md visible-lg hidden-sm hidden-xs">
+                                                                <a class="btn btn-transparent btn-xs tooltips"  data-toggle="modal" data-target=".bs-example-modal-sm-details" ng-click="viewTeacher(<?php echo htmlspecialchars(json_encode($row)) ?>,<?php echo htmlspecialchars(json_encode($teachSubj_data)) ?>)"><i class="fa fa-info-circle"></i></a>
+                                                                <a href="" data-toggle="collapse" data-target="#demo" ng-click="getTeacher(<?php echo htmlspecialchars(json_encode($row)) ?>)" class="btn btn-transparent btn-xs"  data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil"></i></a>
+                                                                <a href="" class="btn btn-transparent btn-xs tooltips" ng-click="delTeacher(<?php echo htmlspecialchars(json_encode($row)) ?>)" data-toggle="modal" data-target=".bs-example-modal-sm" data-toggle="tooltip" data-placement="top" title="Remove"><i class="fa fa-times fa fa-white"></i></a>
+                                                            </div>
+                                                            <div class="visible-xs visible-sm hidden-md hidden-lg">
+                                                                <div class="btn-group dropdown ">
+                                                                    <button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" data-toggle="dropdown">
+                                                                        <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-right dropdown-light" role="menu">
+                                                                        <li>
+                                                                            <a href="#"> View </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#"> Edit </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#"> Remove </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div></td>
+                                                        </tr>
+                                                        <?php $row_c++; } ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                    				    </div>
+                                    </div>
+                				</div>
+                			</div>
                         </div>
-
 						<!-- end: FIRST SECTION -->
 
                         
@@ -247,16 +246,7 @@
 				</div>
 			</div>
 			<!-- start: FOOTER -->
-			<footer>
-				<div class="footer-inner">
-					<div class="pull-left">
-						&copy; <span class="current-year"></span><span class="text-bold text-uppercase"> ClipTheme</span>. <span>All rights reserved</span>
-					</div>
-					<div class="pull-right">
-						<span class="go-top"><i class="ti-angle-up"></i></span>
-					</div>
-				</div>
-			</footer>
+            <?php include'php_assets/admin_footer.php'; ?>
 			<!-- end: FOOTER -->
 		</div>
 		<!-- start: MAIN JAVASCRIPTS -->

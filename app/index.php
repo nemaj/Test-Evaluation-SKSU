@@ -13,10 +13,8 @@
 				<header class="navbar navbar-default navbar-static-top">
 					<!-- start: NAVBAR HEADER -->
 					<div class="navbar-header" style="width: 100%;">
-
 						<a class="navbar-brand" href="index.html"> SKSU </a>
 						<!-- <a class="navbar-brand navbar-brand-collapsed" href="index.html"> <img src="assets/images/logo-collapsed2.png" alt="" /> </a> -->
-
 					</div>
 					<!-- end: NAVBAR HEADER -->
 				</header>

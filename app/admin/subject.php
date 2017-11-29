@@ -42,12 +42,12 @@
                                     </a>
 								</li>
                                 <li>
-                                    <a href="course.php?id=<? echo $_courseID ?>">
-                                    <? echo $course_data['course'] ?>
+                                    <a href="course.php?id=<?php echo $_courseID ?>">
+                                    <?php echo $course_data['course'] ?>
                                     </a>
                                 </li>
                                 <li>
-                                    <? echo $subject_data['subject_code'] ?>
+                                    <?php echo $subject_data['subject_code'] ?>
                                 </li>
 							</ul>
 						</div>
@@ -61,7 +61,7 @@
 								<div class="panel-body">
                                     <div class="row">
                                       <div class="col-lg-4 col-xs-5">
-                                          <h5 class="over-title margin-bottom-15"><span class="text-bold"><? echo $subject_data['subject_code'] ?></span> List</h5>
+                                          <h5 class="over-title margin-bottom-15"><span class="text-bold"><?php echo $subject_data['subject_code'] ?></span> List</h5>
                                       </div>
                                       <div class="col-lg-8 col-xs-7 text-right">
                                           <div class="btn-group">
@@ -86,13 +86,13 @@
                                                 include'php_function/get_answer_each_question.php';
                                           ?>
                                             <tr>
-                                                <td class="center"><? echo $row_c ?></td>
-                                                <td><? echo $row['question'] ?></td>
+                                                <td class="center"><?php echo $row_c ?></td>
+                                                <td><?php echo $row['question'] ?></td>
                                                 <td class="center">
                                                 <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                                    <a class="btn btn-transparent btn-xs tooltips" data-toggle="modal" data-target=".bs-example-modal-sm-info"  ng-click="getQuestionAns(<? echo htmlspecialchars(json_encode($row)) ?>, <? echo htmlspecialchars(json_encode($question_ans)) ?>)"><i class="fa fa-info-circle"></i></a>
-                                                    <a type="button" class="btn btn-transparent btn-xs" ng-click="getQuestion(<? echo htmlspecialchars(json_encode($row)) ?>)" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-pencil"></i></a>
-                                                    <a href="" class="btn btn-transparent btn-xs tooltips" ng-click="getQuestion(<? echo htmlspecialchars(json_encode($row)) ?>)" data-toggle="modal" data-target=".bs-example-modal-sm-delete"><i class="fa fa-times fa fa-white"></i></a>
+                                                    <a class="btn btn-transparent btn-xs tooltips" data-toggle="modal" data-target=".bs-example-modal-sm-info"  ng-click="getQuestionAns(<?php echo htmlspecialchars(json_encode($row)) ?>, <?php echo htmlspecialchars(json_encode($question_ans)) ?>)"><i class="fa fa-info-circle"></i></a>
+                                                    <a type="button" class="btn btn-transparent btn-xs" ng-click="getQuestion(<?php echo htmlspecialchars(json_encode($row)) ?>)" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-pencil"></i></a>
+                                                    <a href="" class="btn btn-transparent btn-xs tooltips" ng-click="getQuestion(<?php echo htmlspecialchars(json_encode($row)) ?>)" data-toggle="modal" data-target=".bs-example-modal-sm-delete"><i class="fa fa-times fa fa-white"></i></a>
                                                 </div>
                                                 <div class="visible-xs visible-sm hidden-md hidden-lg">
                                                     <div class="btn-group dropdown ">
@@ -133,7 +133,7 @@
                             </button>
                             <h4 class="modal-title" id="myModalLabel">{{button}} Question</h4>
                         </div>
-                        <form role="form" action="php_function/add_question.php?id=<? echo $_GET['Sid'] ?>" method="post">
+                        <form role="form" action="php_function/add_question.php?id=<?php echo $_GET['Sid'] ?>" method="post">
                             <input type="hidden" name="quesID" value="{{ questionData.q_id ? questionData.q_id : '' }}">
                             <div class="modal-body">
                                 <div class="form-group">
@@ -210,16 +210,7 @@
 				</div>
 			</div>
 			<!-- start: FOOTER -->
-			<footer>
-				<div class="footer-inner">
-					<div class="pull-left">
-						&copy; <span class="current-year"></span><span class="text-bold text-uppercase"> ClipTheme</span>. <span>All rights reserved</span>
-					</div>
-					<div class="pull-right">
-						<span class="go-top"><i class="ti-angle-up"></i></span>
-					</div>
-				</div>
-			</footer>
+            <?php include'php_assets/admin_footer.php'; ?>
 			<!-- end: FOOTER -->
 		</div>
 		<!-- start: MAIN JAVASCRIPTS -->

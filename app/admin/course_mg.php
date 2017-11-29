@@ -65,9 +65,9 @@
                             <tbody>
                                 <?php $row_c = 1; while($row = mysqli_fetch_assoc($course)){ ?>
                                 <tr>
-                                    <td class="center"><? echo $row_c ?></td>
-                                    <td><? echo $row['course'] ?></td>
-                                    <td class="hidden-xs"><? echo !$row['description'] ? '-' : $row['description'] ?></td>
+                                    <td class="center"><?php echo $row_c ?></td>
+                                    <td><?php echo $row['course'] ?></td>
+                                    <td class="hidden-xs"><?php echo !$row['description'] ? '-' : $row['description'] ?></td>
                                     <td class="center">
                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
                                         <a href="#" class="btn btn-transparent btn-xs"  data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil"></i></a>
@@ -139,16 +139,7 @@
 				</div>
 			</div>
 			<!-- start: FOOTER -->
-			<footer>
-				<div class="footer-inner">
-					<div class="pull-left">
-						&copy; <span class="current-year"></span><span class="text-bold text-uppercase"> ClipTheme</span>. <span>All rights reserved</span>
-					</div>
-					<div class="pull-right">
-						<span class="go-top"><i class="ti-angle-up"></i></span>
-					</div>
-				</div>
-			</footer>
+            <?php include'php_assets/admin_footer.php'; ?>
 			<!-- end: FOOTER -->
 		</div>
 		<!-- start: MAIN JAVASCRIPTS -->

@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('EvaluationApp', ['circle.countdown'])
+var app = angular.module('EvaluationApp', [])
 
 	.controller('IndexCtrl', ['$scope', function($scope){
 		

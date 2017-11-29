@@ -1,7 +1,5 @@
 
-<!-- start: TOP NAVBAR -->
 <header class="navbar navbar-default navbar-static-top">
-    <!-- start: NAVBAR HEADER -->
     <div class="navbar-header">
         <button href="javascript:void(0)" class="menu-mobile-toggler btn no-radius pull-left hidden-md hidden-lg" id="horizontal-menu-toggler" data-toggle="collapse" data-target=".horizontal-menu">
             <i class="fa fa-bars"></i>
@@ -13,8 +11,6 @@
             <i class="fa fa-folder closed-icon"></i><i class="fa fa-folder-open open-icon"></i><small><i class="fa fa-caret-down margin-left-5"></i></small>
         </button>
     </div>
-    <!-- end: NAVBAR HEADER -->
-    <!-- start: NAVBAR COLLAPSE -->
     <div class="navbar-collapse collapse">
         <ul class="nav navbar-left hidden-sm hidden-xs">
             <li class="sidebar-toggler-wrapper">
@@ -36,7 +32,6 @@
             </li>
         </ul>
         <ul class="nav navbar-right">
-            <!-- start: MESSAGES DROPDOWN -->
             <li class="dropdown">
                 <a href class="dropdown-toggle" data-toggle="dropdown"> <span class="badge"> 3 </span> <i class="fa fa-envelope"></i> </a>
                 <ul class="dropdown-menu dropdown-light dropdown-messages dropdown-large animated fadeInUpShort">
@@ -93,8 +88,6 @@
                     </li>
                 </ul>
             </li>
-            <!-- end: MESSAGES DROPDOWN -->
-            <!-- start: ACTIVITIES DROPDOWN -->
             <li class="dropdown">
                 <a href class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-bell"></i> </a>
                 <ul class="dropdown-menu dropdown-light dropdown-messages dropdown-large animated fadeInUpShort">
@@ -114,58 +107,42 @@
                     </li>
                 </ul>
             </li>
-            <!-- end: ACTIVITIES DROPDOWN -->
         </ul>
-        <!-- start: MENU TOGGLER FOR MOBILE DEVICES -->
         <div class="close-handle visible-xs-block menu-toggler" data-toggle="collapse" href=".navbar-collapse">
             <div class="arrow-left"></div>
             <div class="arrow-right"></div>
         </div>
-        <!-- end: MENU TOGGLER FOR MOBILE DEVICES -->
     </div>
-    <!-- end: NAVBAR COLLAPSE -->
 </header>
 
-<!-- start: HORIZONTAL MENU -->
 <div class="navbar navbar-default horizontal-menu collapse">
     <div class="horizontal-menu-wrapper">
         <div class="horizontal-nav-container">
             <ul class="nav navbar-nav no-border">
-                <li class="<? echo $active_dashboard ?>">
+                <li class="<?php echo $active_dashboard ?>">
                     <a href="index.php"> <span class="fa fa-home"></span> <span> Dashboard </span> </a>
                 </li>
-                <li class="<? echo $active_teacher ?>">
+                <li class="<?php echo $active_teacher ?>">
                     <a href="teachers.php"> <span class="fa fa-users"></span> <span> Teachers </span> </a>
                 </li>
-                <li class="dropdown <? echo $active_course ?>">
+                <li class="dropdown <?php echo $active_course ?>">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"> <span class="fa fa-mortar-board"></span> <span> Course</span> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-
                         <li><a href="course_mg.php"> <span> COURSES </span> </a></li>
                         <span class="mega-menu-sub-title text-uppercase text-light text-bold text-extra-small" style="margin-left: 15px;">Course List</span>
+
                         <?php while($row_li = mysqli_fetch_assoc($course)){ ?>
                         <li>
-                            <a href="course.php?id=<? echo $row_li['course_id'] ?>"> <span> <? echo $row_li['course'] ?> </span> </a>
+                            <a href="course.php?id=<?php echo $row_li['course_id'] ?>"> <span> <?php echo $row_li['course'] ?> </span> </a>
                         </li>
                         <?php } ?>
-                        <!-- <li class="dropdown-submenu">
-                            <a href="#"> Icons </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="ui_icons.html"> <span> Font Awesome Icons </span> </a>
-                                </li>
-                                <li>
-                                    <a href="ui_line_icons.html"> <span> Linear Icons </span> </a>
-                                </li>
-                            </ul>
-                        </li> -->
+
                     </ul>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle nav-user-wrapper" data-toggle="dropdown"> <img alt="" src="../assets/images/avatar-1.jpg"> <span>Administrator</span> <span class="caret"></span> </a>
-
                     <ul class="dropdown-menu pull-right animated fadeInRight">
                         <li>
                             <a href="#"> My Profile </a>
@@ -181,18 +158,13 @@
                 </li>
             </ul>
         </div>
-        <!-- start: MENU TOGGLER FOR MOBILE DEVICES -->
         <div class="close-handle visible-xs-block visible-sm-block menu-toggler" data-toggle="collapse" data-target=".horizontal-menu">
             <div class="arrow-left"></div>
             <div class="arrow-right"></div>
         </div>
-        <!-- end: MENU TOGGLER FOR MOBILE DEVICES -->
     </div>
 </div>
-<!-- end: HORIZONTAL MENU -->
 
-<!-- end: TOP NAVBAR -->
-
-<?
+<?php
     include'php_function/get_course.php';
 ?>
